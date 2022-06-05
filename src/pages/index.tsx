@@ -1,11 +1,3 @@
-import { Button } from '@chakra-ui/react'
-import type { NextPage } from 'next'
-
-const Home: NextPage = () => (
-  <>
-    <div>Hello world!</div>
-    <Button>Hello world</Button>
-  </>
-)
+import { Home } from 'routes/Home'
 
 export default Home
