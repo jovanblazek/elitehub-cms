@@ -44,5 +44,5 @@ export const Colors = {
 }
 
 export const TEXT_COLOR = Colors.brand.platinum
-export const BASE_FONT_SIZE_PX = '18px'
+export const BASE_FONT_SIZE_PX = '16px'
 export const HEADER_HEIGHT_PX = '80px'
