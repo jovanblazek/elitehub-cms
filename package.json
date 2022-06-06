@@ -11,6 +11,9 @@
   "dependencies": {
     "@chakra-ui/react": "^2.1.2",
     "@chakra-ui/theme-tools": "^2.0.1",
+    "@emotion-icons/boxicons-logos": "^3.19.0",
+    "@emotion-icons/boxicons-regular": "^3.19.0",
+    "@emotion-icons/boxicons-solid": "^3.19.0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@fontsource/rubik": "^4.5.9",

@@ -5,6 +5,7 @@ import {
   BASE_FONT_SIZE_PX,
   Colors,
   DeviceBreakpoints,
+  FONT_FAMILY,
   HEADER_HEIGHT_PX,
   TEXT_COLOR,
 } from './constants'
@@ -45,6 +46,10 @@ const CustomTheme = {
   },
   breakpoints: Breakpoints,
   styles: GlobalStyles,
+  fonts: {
+    body: FONT_FAMILY.TEXT,
+    heading: FONT_FAMILY.HEADING,
+  },
   components: {
     ...Components,
   },
