@@ -48,7 +48,7 @@ const CustomTheme = {
   styles: GlobalStyles,
   fonts: {
     body: FONT_FAMILY.TEXT,
-    heading: FONT_FAMILY.HEADING,
+    heading: FONT_FAMILY.TEXT,
   },
   components: {
     ...Components,

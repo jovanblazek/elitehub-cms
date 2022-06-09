@@ -43,7 +43,7 @@ export const Navbar = () => (
     fontSize="lg"
     fontFamily={FONT_FAMILY.HEADING}
   >
-    <Container>
+    <Container maxWidth="1200px">
       <Grid gridTemplateColumns={`${LOGO_COLUMN_WIDTH} 1fr`} gridGap={4}>
         <div>logo</div>
         <Flex gap="8" justifySelf="end" alignItems="center">

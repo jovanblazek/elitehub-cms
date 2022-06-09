@@ -3,7 +3,11 @@ import type { AppProps } from 'next/app'
 import { theme } from 'theme'
 import { Navbar } from 'components/Navbar'
 import '@fontsource/rubik/400.css'
+import '@fontsource/rubik/500.css'
+import '@fontsource/rubik/600.css'
+import '@fontsource/rubik/700.css'
 import '@fontsource/saira/400.css'
+import '@fontsource/saira/700.css'
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <ChakraProvider theme={theme}>

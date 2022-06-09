@@ -52,6 +52,10 @@ export const COLOR_INTENT = {
       },
     },
   },
+  TITLE: {
+    TITLE: Colors.brand.white,
+    DESCRIPTION: Colors.brand.platinum,
+  },
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -63,3 +67,4 @@ export const FONT_FAMILY = {
 export const TEXT_COLOR = Colors.brand.platinum
 export const BASE_FONT_SIZE_PX = '16px'
 export const HEADER_HEIGHT_PX = '80px'
+export const CONTAINER_MAX_WIDTH_PX = '1020px'
