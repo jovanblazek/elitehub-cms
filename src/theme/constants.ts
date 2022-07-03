@@ -10,7 +10,7 @@ export const DEVICE_BREAKPOINTS = {
 }
 
 // WIKI color palette: https://coolors.co/000000-292929-494949-70b8ff-494949
-// https://coolors.co/70b8ff-0070e0-16161a-242629-72757e-e6e6e6-ffffff
+// https://coolors.co/70b8ff-0070e0-16161a-242629-2f2f37-72757e-e6e6e6-ffffff
 export const COLORS = {
   brand: {
     sunsetGlow: '#FFB52E',
@@ -18,6 +18,7 @@ export const COLORS = {
     skyBlue: '#70B8FF',
     pianoBlack: '#16161A',
     raisinBlack: '#242629',
+    jet: '#2F2F37',
     sonicSilver: '#72757E',
     platinum: '#E6E6E6',
     white: '#FFFFFF',
@@ -34,10 +35,10 @@ export const COLORS = {
   },
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const COLOR_INTENT = {
   NAVBAR: {
     BACKGROUND: COLORS.brand.raisinBlack,
+    MOBILE_BACKGROUND: COLORS.brand.jet,
     CTA_HOVER: COLORS.other.discordBlurple,
   },
   NAVLINK: {
@@ -61,7 +62,6 @@ export const COLOR_INTENT = {
   },
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const FONT_FAMILY = {
   HEADING: 'Saira, sans-serif',
   TEXT: 'Rubik, sans-serif',
