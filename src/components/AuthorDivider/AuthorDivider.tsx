@@ -17,8 +17,8 @@ export const AuthorDivider = ({ name, image, date }: Props) => (
         </Box>
         <Text fontWeight="bold">{name}</Text>
       </Flex>
-      <Flex pl="4" borderLeft="1px" height="32px" alignItems="center">
-        <Text>{date}</Text>
+      <Flex pl="8" borderLeft="1px" height="32px" alignItems="center">
+        <Text letterSpacing="wide">{date}</Text>
       </Flex>
     </Flex>
     <Divider />

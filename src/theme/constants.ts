@@ -1,6 +1,6 @@
 import { transparentize } from 'polished'
 
-export const DeviceBreakpoints = {
+export const DEVICE_BREAKPOINTS = {
   xs: '320px',
   sm: '480px',
   md: '768px',
@@ -11,7 +11,7 @@ export const DeviceBreakpoints = {
 
 // WIKI color palette: https://coolors.co/000000-292929-494949-70b8ff-494949
 // https://coolors.co/70b8ff-0070e0-16161a-242629-72757e-e6e6e6-ffffff
-export const Colors = {
+export const COLORS = {
   brand: {
     sunsetGlow: '#FFB52E',
     navyBlue: '#0070E0',
@@ -37,24 +37,27 @@ export const Colors = {
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const COLOR_INTENT = {
   NAVBAR: {
-    BACKGROUND: Colors.brand.raisinBlack,
-    LINK_HOVER: Colors.brand.sunsetGlow,
-    CTA_HOVER: Colors.other.discordBlurple,
+    BACKGROUND: COLORS.brand.raisinBlack,
+    CTA_HOVER: COLORS.other.discordBlurple,
+  },
+  NAVLINK: {
+    TEXT: COLORS.brand.platinum,
+    HOVER: COLORS.brand.sunsetGlow,
   },
   BUTTON: {
     OUTLINE: {
-      BOX_SHADOW: transparentize(0.8, Colors.brand.white),
+      BOX_SHADOW: transparentize(0.8, COLORS.brand.white),
       BACKGROUND: 'transparent',
-      TEXT: Colors.brand.white,
+      TEXT: COLORS.brand.white,
       HOVER: {
-        BOX_SHADOW: transparentize(0.25, Colors.brand.white),
+        BOX_SHADOW: transparentize(0.25, COLORS.brand.white),
         BACKGROUND: 'transparent',
       },
     },
   },
   TITLE: {
-    TITLE: Colors.brand.white,
-    DESCRIPTION: Colors.brand.platinum,
+    TITLE: COLORS.brand.white,
+    DESCRIPTION: COLORS.brand.platinum,
   },
 }
 
@@ -64,7 +67,7 @@ export const FONT_FAMILY = {
   TEXT: 'Rubik, sans-serif',
 }
 
-export const TEXT_COLOR = Colors.brand.platinum
+export const TEXT_COLOR = COLORS.brand.platinum
 export const BASE_FONT_SIZE_PX = '16px'
 export const HEADER_HEIGHT_PX = '80px'
 export const CONTAINER_MAX_WIDTH_PX = '1020px'

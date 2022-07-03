@@ -3,14 +3,14 @@ import { createBreakpoints, Styles } from '@chakra-ui/theme-tools'
 import * as Components from './components'
 import {
   BASE_FONT_SIZE_PX,
-  Colors,
-  DeviceBreakpoints,
+  COLORS,
+  DEVICE_BREAKPOINTS,
   FONT_FAMILY,
   HEADER_HEIGHT_PX,
   TEXT_COLOR,
 } from './constants'
 
-const Breakpoints = createBreakpoints(DeviceBreakpoints)
+const Breakpoints = createBreakpoints(DEVICE_BREAKPOINTS)
 
 export const GlobalStyles: Styles = {
   global: {
@@ -38,7 +38,7 @@ export const GlobalStyles: Styles = {
 
 const CustomTheme = {
   colors: {
-    ...Colors,
+    ...COLORS,
   },
   config: {
     initialColorMode: 'dark',
