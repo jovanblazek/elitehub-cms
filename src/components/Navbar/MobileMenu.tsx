@@ -41,12 +41,11 @@ export const MobileMenu = ({ isOpen }: Props) => (
         <Grid
           backgroundColor={COLOR_INTENT.NAVBAR.MOBILE_BACKGROUND}
           px="10"
-          py="8"
-          gap="8"
+          py="4"
           textAlign="end"
         >
           {NAVLINKS.map(({ href, text }) => (
-            <NavLink href={href} text={text} />
+            <NavLink href={href} text={text} py={4} />
           ))}
         </Grid>
       </Wrapper>

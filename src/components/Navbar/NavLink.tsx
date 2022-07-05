@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/react'
+import { Text, TextProps } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
@@ -21,12 +21,12 @@ const Underline = styled(motion.div)`
   width: 100%;
 `
 
-interface Props {
+interface Props extends TextProps {
   text: string
   href: string
 }
 
-export const NavLink = ({ text, href }: Props) => {
+export const NavLink = ({ text, href, ...rest }: Props) => {
   const { isDesktop } = useMedia()
   return (
     <Link key={text} href={href}>
@@ -38,6 +38,7 @@ export const NavLink = ({ text, href }: Props) => {
           _hover={{
             color: COLOR_INTENT.NAVLINK.HOVER,
           }}
+          {...rest}
         >
           {text}
         </Text>
