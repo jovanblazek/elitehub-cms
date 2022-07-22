@@ -1,13 +1,13 @@
 import { Box, Divider, Flex, FlexProps, Text } from '@chakra-ui/react'
 import Image from 'next/image'
 
-interface Props extends FlexProps {
+export interface AuthorProps extends FlexProps {
   name: string
   image: string
   date: string
 }
 
-export const AuthorDivider = ({ name, image, date }: Props) => (
+export const AuthorDivider = ({ name, image, date }: AuthorProps) => (
   <>
     <Text>Autor</Text>
     <Flex justifyContent="space-between" alignItems="center" py="4">

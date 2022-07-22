@@ -2,7 +2,7 @@ import { Box, BoxProps, Flex, Heading, Text } from '@chakra-ui/react'
 import Link from 'next/link'
 import { COLOR_INTENT } from 'theme'
 
-interface Props extends BoxProps {
+export interface TitleProps extends BoxProps {
   title: string
   description?: string
   categories?: {
@@ -11,8 +11,8 @@ interface Props extends BoxProps {
   }[]
 }
 
-export const Title = ({ categories, title, description, ...rest }: Props) => (
-  <Box {...rest}>
+export const Title = ({ categories, title, description, ...rest }: TitleProps) => (
+  <Box pt="12" mb="12" {...rest}>
     <Flex mb="4">
       {categories &&
         categories.map(({ name, slug }) => (
