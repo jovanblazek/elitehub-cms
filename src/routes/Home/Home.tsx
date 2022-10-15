@@ -9,7 +9,7 @@ export const Home = () => (
     <ArticleHeader
       titleProps={{
         title: 'Background Simulation',
-        description: 'Lorem ipsum dolor sit amet.',
+        // subtitle: 'Lorem ipsum dolor sit amet.',
         categories: [
           {
             name: 'Mechaniky',
@@ -17,12 +17,7 @@ export const Home = () => (
           },
         ],
       }}
-      titleImage="/image.jpeg"
-      authorProps={{
-        name: 'John Doe',
-        image: '/image.jpeg',
-        date: 'Jun 9, 2022',
-      }}
+      titleImage="/exploration.jpeg"
     />
   </Box>
 )

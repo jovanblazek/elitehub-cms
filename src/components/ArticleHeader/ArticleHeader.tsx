@@ -1,35 +1,34 @@
-import { Box, Container, Img } from '@chakra-ui/react'
-import { COLORS } from 'theme'
-import { AuthorDivider, AuthorProps } from 'components/AuthorDivider'
+import { Container, Flex } from '@chakra-ui/react'
 import { Title, TitleProps } from 'components/Title'
+
+const HEADER_HEIGHT = '50vh'
+const HEADER_BRIGHTNESS = 0.85
 
 interface Props {
   titleProps: TitleProps
-  titleImage?: string
-  authorProps: AuthorProps
+  titleImage: string
 }
 
-export const ArticleHeader = ({ titleProps, titleImage, authorProps }: Props) => (
-  <Box position="relative">
+export const ArticleHeader = ({ titleProps, titleImage }: Props) => (
+  <Flex
+    position="relative"
+    _before={{
+      content: '""',
+      display: 'block',
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      zIndex: -1,
+      backgroundImage: `url(${titleImage})`,
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      filter: `brightness(${HEADER_BRIGHTNESS})`,
+    }}
+    alignItems="flex-end"
+    height={HEADER_HEIGHT}
+  >
     <Container>
-      <Title {...titleProps} />
-      <Img src={titleImage} borderRadius="md" my="8" />
-      <AuthorDivider {...authorProps} />
+      <Title {...titleProps} filter="revert" />
     </Container>
-    {/* 
-    // TODO: use simple exploration images
-  */}
-    <Box
-      // backgroundImage="/bgimage.jpg"
-      borderTop={`1px solid ${COLORS.brand.sonicSilver}`}
-      backgroundColor={COLORS.brand.raisinBlack}
-      position="absolute"
-      top={0}
-      left={0}
-      right={0}
-      bottom="200px"
-      backgroundSize="cover"
-      zIndex={-1}
-    />
-  </Box>
+  </Flex>
 )

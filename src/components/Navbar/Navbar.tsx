@@ -3,7 +3,7 @@ import { Container, Flex, Icon, IconButton, Img, Text } from '@chakra-ui/react'
 import { DiscordAlt } from '@emotion-icons/boxicons-logos'
 import { ChevronDown } from '@emotion-icons/boxicons-regular'
 import { rem } from 'polished'
-import { COLOR_INTENT, FONT_FAMILY, HEADER_HEIGHT_PX } from 'theme'
+import { COLOR_INTENT, FONT_FAMILY, HEADER_HEIGHT_PX, Z_INDEX } from 'theme'
 import { useMedia } from 'utils/useMedia'
 import { NAVLINKS } from './constants'
 import { MobileMenu } from './MobileMenu'
@@ -17,7 +17,11 @@ export const Navbar = () => {
 
   return (
     <Flex
-      position="relative"
+      position="fixed"
+      top={0}
+      left={0}
+      right={0}
+      zIndex={Z_INDEX.NAVBAR}
       height={HEADER_HEIGHT_PX}
       backgroundColor={COLOR_INTENT.NAVBAR.BACKGROUND}
       alignItems="center"

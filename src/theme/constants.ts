@@ -9,6 +9,10 @@ export const DEVICE_BREAKPOINTS = {
   '2xl': '1536px',
 }
 
+export const Z_INDEX = {
+  NAVBAR: 100,
+}
+
 // WIKI color palette: https://coolors.co/000000-292929-494949-70b8ff-494949
 // https://coolors.co/70b8ff-0070e0-16161a-242629-2f2f37-72757e-e6e6e6-ffffff
 export const COLORS = {
@@ -22,6 +26,7 @@ export const COLORS = {
     sonicSilver: '#72757E',
     platinum: '#E6E6E6',
     white: '#FFFFFF',
+    black: '#000000',
   },
   state: {
     // TODO get these from eva design system - color tool
@@ -33,11 +38,11 @@ export const COLORS = {
   other: {
     discordBlurple: '#7289DA',
   },
-}
+} as const
 
 export const COLOR_INTENT = {
   NAVBAR: {
-    BACKGROUND: COLORS.brand.raisinBlack,
+    BACKGROUND: 'transparent',
     MOBILE_BACKGROUND: COLORS.brand.jet,
     CTA_HOVER: COLORS.other.discordBlurple,
   },
@@ -58,12 +63,16 @@ export const COLOR_INTENT = {
   },
   TITLE: {
     TITLE: COLORS.brand.white,
-    DESCRIPTION: COLORS.brand.platinum,
+    SUBTITLE: COLORS.brand.platinum,
+    TEXT_SHADOW: COLORS.brand.black,
+  },
+  ARTICLE_HEADER: {
+    BACKGROUND: COLORS.brand.black,
   },
 }
 
 export const FONT_FAMILY = {
-  HEADING: 'Saira, sans-serif',
+  HEADING: 'Rubik, sans-serif',
   TEXT: 'Rubik, sans-serif',
 }
 

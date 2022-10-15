@@ -1,36 +1,45 @@
-import { Box, BoxProps, Flex, Heading, Text } from '@chakra-ui/react'
+import { Box, BoxProps, Divider, Flex, Heading, Text } from '@chakra-ui/react'
 import Link from 'next/link'
+import { rem } from 'polished'
 import { COLOR_INTENT } from 'theme'
+
+const DIVIDER_WIDTH = rem(150)
+const DIVIDER_HEIGHT = rem(1)
 
 export interface TitleProps extends BoxProps {
   title: string
-  description?: string
+  subtitle?: string
   categories?: {
     name: string
     slug: string
   }[]
 }
 
-export const Title = ({ categories, title, description, ...rest }: TitleProps) => (
+export const Title = ({ categories, title, subtitle, ...rest }: TitleProps) => (
   <Box pt="12" mb="12" {...rest}>
     <Flex mb="4">
       {categories &&
         categories.map(({ name, slug }) => (
-          <Link href={slug}>
+          <Link href={slug} key={slug}>
             <Text fontWeight="medium">{name}</Text>
           </Link>
         ))}
     </Flex>
     <Heading
       as="h1"
-      fontSize="5xl"
+      fontSize="6xl"
       mb="2"
       color={COLOR_INTENT.TITLE.TITLE}
-      fontWeight="bold"
+      fontWeight="medium"
       letterSpacing="tight"
+      textShadow={`${COLOR_INTENT.TITLE.TEXT_SHADOW} 0px 0px 25px`}
     >
       {title}
     </Heading>
-    <Text color={COLOR_INTENT.TITLE.DESCRIPTION}>{description}</Text>
+    {subtitle ? (
+      <Text color={COLOR_INTENT.TITLE.SUBTITLE}>{subtitle}</Text>
+    ) : (
+      <Divider mt="4" width={DIVIDER_WIDTH} borderWidth={DIVIDER_HEIGHT} />
+    )}
   </Box>
 )
