@@ -60,7 +60,7 @@ export const Navbar = () => {
       <Container maxWidth={NAVBAR_MAX_WIDTH}>
         <Flex justifyContent="space-between" alignItems="center" gap={2}>
           <LinkBox as="div">
-            <Flex alignItems="center" gap="2">
+            <Flex alignItems="center" gap="2" color={COLOR_INTENT.NAVLINK.TEXT}>
               <Img src="/elitehub-logo.svg" alt="logo" borderRadius="full" width="9" height="9" />
               <Text color="brand.sonicSilver" fontSize="3xl">
                 /

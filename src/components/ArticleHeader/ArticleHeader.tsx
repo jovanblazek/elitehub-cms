@@ -1,5 +1,5 @@
-import { Container, Flex } from '@chakra-ui/react'
-import { NAVBAR_MAX_WIDTH } from 'theme'
+import { Box, Container, Flex } from '@chakra-ui/react'
+import { CONTAINER_MAX_WIDTH_PX, NAVBAR_MAX_WIDTH } from 'theme'
 import { Title, TitleProps } from './components'
 
 const HEADER_HEIGHT = '58vh'
@@ -29,8 +29,15 @@ export const ArticleHeader = ({ titleProps, titleImage }: Props) => (
     alignItems="flex-end"
     height={HEADER_HEIGHT}
   >
-    <Container maxWidth={NAVBAR_MAX_WIDTH}>
-      <Title {...titleProps} filter="revert" />
-    </Container>
+    <Box width="100%" px={{ base: '0', xl: '6' }}>
+      <Container
+        maxWidth={{
+          base: CONTAINER_MAX_WIDTH_PX,
+          xl: NAVBAR_MAX_WIDTH,
+        }}
+      >
+        <Title {...titleProps} />
+      </Container>
+    </Box>
   </Flex>
 )

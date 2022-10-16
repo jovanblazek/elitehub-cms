@@ -1,5 +1,5 @@
 import { extendTheme } from '@chakra-ui/react'
-import { createBreakpoints, Styles } from '@chakra-ui/theme-tools'
+import { Styles } from '@chakra-ui/theme-tools'
 import * as Components from './components'
 import {
   BASE_FONT_SIZE_PX,
@@ -9,8 +9,6 @@ import {
   HEADER_HEIGHT_PX,
   TEXT_COLOR,
 } from './constants'
-
-const Breakpoints = createBreakpoints(DEVICE_BREAKPOINTS)
 
 export const GlobalStyles: Styles = {
   global: {
@@ -25,7 +23,7 @@ export const GlobalStyles: Styles = {
       minWidth: '320px',
       color: TEXT_COLOR,
       fontFamily: 'Rubik, sans-serif',
-      backgroundColor: 'brand.pianoBlack',
+      backgroundColor: COLORS.PIANO_BLACK,
     },
     '*, *::before, &::after': {
       borderColor: 'brand.skyBlue',
@@ -44,7 +42,7 @@ const CustomTheme = {
     initialColorMode: 'dark',
     useSystemColorMode: false,
   },
-  breakpoints: Breakpoints,
+  breakpoints: DEVICE_BREAKPOINTS,
   styles: GlobalStyles,
   fonts: {
     body: FONT_FAMILY.TEXT,

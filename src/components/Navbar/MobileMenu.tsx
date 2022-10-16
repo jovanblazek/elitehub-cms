@@ -45,7 +45,7 @@ export const MobileMenu = ({ isOpen }: Props) => (
           textAlign="end"
         >
           {NAVLINKS.map(({ href, text }) => (
-            <NavLink href={href} text={text} py={4} />
+            <NavLink key={text} href={href} text={text} py={4} />
           ))}
         </Grid>
       </Wrapper>

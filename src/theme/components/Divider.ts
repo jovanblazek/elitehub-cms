@@ -4,7 +4,7 @@ import { COLORS } from 'theme/constants'
 export const Divider: ComponentSingleStyleConfig = {
   baseStyle: {
     borderBottomWidth: '2px',
-    borderColor: COLORS.brand.sunsetGlow,
+    borderColor: COLORS.SUNSET_GLOW,
     opacity: 1,
   },
 }

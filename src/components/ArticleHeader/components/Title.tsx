@@ -28,10 +28,10 @@ export const Title = ({ categories, title, ...rest }: TitleProps) => (
       as="h1"
       fontSize="6xl"
       mb="2"
-      color={COLOR_INTENT.TITLE.TITLE}
+      color={COLOR_INTENT.ARTICLE_HEADER.TITLE.TITLE}
       fontWeight="medium"
       letterSpacing="tight"
-      textShadow={`${COLOR_INTENT.TITLE.TEXT_SHADOW} 0px 0px 25px`}
+      textShadow={`${COLOR_INTENT.ARTICLE_HEADER.TITLE.TEXT_SHADOW} 0px 0px 25px`}
     >
       {title}
     </Heading>

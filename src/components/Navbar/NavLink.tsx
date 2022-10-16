@@ -35,6 +35,7 @@ export const NavLink = ({ text, href, ...rest }: Props) => {
           fontWeight="medium"
           cursor="pointer"
           transitionDuration={`${ANIMATION_DURATION}s`}
+          color={COLOR_INTENT.NAVLINK.TEXT}
           _hover={{
             color: COLOR_INTENT.NAVLINK.HOVER,
           }}
