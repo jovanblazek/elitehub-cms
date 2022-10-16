@@ -8,14 +8,13 @@ const DIVIDER_HEIGHT = rem(1)
 
 export interface TitleProps extends BoxProps {
   title: string
-  subtitle?: string
   categories?: {
     name: string
     slug: string
   }[]
 }
 
-export const Title = ({ categories, title, subtitle, ...rest }: TitleProps) => (
+export const Title = ({ categories, title, ...rest }: TitleProps) => (
   <Box pt="12" mb="12" {...rest}>
     <Flex mb="4">
       {categories &&
@@ -36,10 +35,6 @@ export const Title = ({ categories, title, subtitle, ...rest }: TitleProps) => (
     >
       {title}
     </Heading>
-    {subtitle ? (
-      <Text color={COLOR_INTENT.TITLE.SUBTITLE}>{subtitle}</Text>
-    ) : (
-      <Divider mt="4" width={DIVIDER_WIDTH} borderWidth={DIVIDER_HEIGHT} />
-    )}
+    <Divider mt="3" width={DIVIDER_WIDTH} borderWidth={DIVIDER_HEIGHT} />
   </Box>
 )

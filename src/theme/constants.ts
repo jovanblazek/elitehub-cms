@@ -1,4 +1,6 @@
-import { transparentize } from 'polished'
+import { rem, transparentize } from 'polished'
+
+export const NAVBAR_MAX_WIDTH = rem(1280) // chakra-ui's container.xl is 1280px
 
 export const DEVICE_BREAKPOINTS = {
   xs: '320px',
@@ -42,7 +44,7 @@ export const COLORS = {
 
 export const COLOR_INTENT = {
   NAVBAR: {
-    BACKGROUND: 'transparent',
+    BACKGROUND: COLORS.brand.raisinBlack,
     MOBILE_BACKGROUND: COLORS.brand.jet,
     CTA_HOVER: COLORS.other.discordBlurple,
   },

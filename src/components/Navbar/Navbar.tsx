@@ -1,19 +1,41 @@
 import { useState } from 'react'
-import { Container, Flex, Icon, IconButton, Img, Text } from '@chakra-ui/react'
+import {
+  Container,
+  Flex,
+  Icon,
+  IconButton,
+  Img,
+  LinkBox,
+  LinkOverlay,
+  Text,
+} from '@chakra-ui/react'
 import { DiscordAlt } from '@emotion-icons/boxicons-logos'
-import { ChevronDown } from '@emotion-icons/boxicons-regular'
-import { rem } from 'polished'
-import { COLOR_INTENT, FONT_FAMILY, HEADER_HEIGHT_PX, Z_INDEX } from 'theme'
+import { MenuAltRight } from '@emotion-icons/boxicons-regular'
+import { useScrollPosition } from '@n8tb1t/use-scroll-position'
+import NextLink from 'next/link'
+import { ROUTES } from 'shared/constants'
+import { COLOR_INTENT, FONT_FAMILY, HEADER_HEIGHT_PX, NAVBAR_MAX_WIDTH, Z_INDEX } from 'theme'
 import { useMedia } from 'utils/useMedia'
 import { NAVLINKS } from './constants'
 import { MobileMenu } from './MobileMenu'
 import { NavLink } from './NavLink'
 
-const NAVBAR_MAX_WIDTH = rem(1200)
-
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const { isDesktop } = useMedia()
+  useScrollPosition(
+    ({ currPos }) => {
+      const isScrolledNew = currPos.y < -80
+      if (isScrolledNew !== isScrolled) {
+        setIsScrolled(isScrolledNew)
+      }
+    },
+    [isScrolled],
+    undefined,
+    false,
+    0
+  )
 
   return (
     <Flex
@@ -23,25 +45,39 @@ export const Navbar = () => {
       right={0}
       zIndex={Z_INDEX.NAVBAR}
       height={HEADER_HEIGHT_PX}
-      backgroundColor={COLOR_INTENT.NAVBAR.BACKGROUND}
+      backgroundColor={
+        isScrolled || (isMenuOpen && !isDesktop) ? COLOR_INTENT.NAVBAR.BACKGROUND : 'transparent'
+      }
+      boxShadow={isScrolled || (isMenuOpen && !isDesktop) ? 'base' : 'none'}
+      _hover={{
+        backgroundColor: COLOR_INTENT.NAVBAR.BACKGROUND,
+        boxShadow: 'base',
+      }}
       alignItems="center"
       px={{ base: '0', sm: '6' }}
+      transition="ease-in-out 0.2s background-color"
     >
       <Container maxWidth={NAVBAR_MAX_WIDTH}>
         <Flex justifyContent="space-between" alignItems="center" gap={2}>
-          <Flex alignItems="center" gap="2">
-            <Img src="/elitehub-logo.svg" alt="logo" borderRadius="full" width="9" height="9" />
-            <Text color="brand.sonicSilver" fontSize="3xl">
-              /
-            </Text>
-            <Text fontWeight="semibold" fontSize="2xl" fontFamily={FONT_FAMILY.HEADING}>
-              Elitehub
-            </Text>
-          </Flex>
+          <LinkBox as="div">
+            <Flex alignItems="center" gap="2">
+              <Img src="/elitehub-logo.svg" alt="logo" borderRadius="full" width="9" height="9" />
+              <Text color="brand.sonicSilver" fontSize="3xl">
+                /
+              </Text>
+              <NextLink href={ROUTES.HOME} passHref>
+                <LinkOverlay>
+                  <Text fontWeight="semibold" fontSize="2xl" fontFamily={FONT_FAMILY.HEADING}>
+                    Elitehub
+                  </Text>
+                </LinkOverlay>
+              </NextLink>
+            </Flex>
+          </LinkBox>
           {isDesktop ? (
             <Flex gap="8" justifySelf="end" alignItems="center">
               {NAVLINKS.map(({ href, text }) => (
-                <NavLink href={href} text={text} />
+                <NavLink href={href} text={text} key={text} />
               ))}
               <IconButton
                 variant="outline"
@@ -56,14 +92,12 @@ export const Navbar = () => {
           ) : (
             <>
               <Text
-                fontWeight="medium"
                 cursor="pointer"
                 onClick={() => {
                   setIsMenuOpen((prevState) => !prevState)
                 }}
               >
-                Menu
-                <Icon as={ChevronDown} width="6" height="6" />
+                <Icon as={MenuAltRight} width="8" height="8" />
               </Text>
               <MobileMenu isOpen={isMenuOpen} />
             </>

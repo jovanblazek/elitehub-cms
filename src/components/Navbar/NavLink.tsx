@@ -29,7 +29,7 @@ interface Props extends TextProps {
 export const NavLink = ({ text, href, ...rest }: Props) => {
   const { isDesktop } = useMedia()
   return (
-    <Link key={text} href={href}>
+    <Link href={href}>
       <AnimationWrapper whileHover={ANIMATION_VARIANT.VISIBLE} initial={ANIMATION_VARIANT.HIDDEN}>
         <Text
           fontWeight="medium"
