@@ -39,7 +39,7 @@ export const Navbar = () => {
 
   return (
     <Flex
-      position="fixed"
+      position="sticky"
       top={0}
       left={0}
       right={0}

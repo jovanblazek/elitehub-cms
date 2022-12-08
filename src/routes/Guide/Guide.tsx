@@ -1,6 +1,5 @@
 import { Flex } from '@chakra-ui/react'
 import Link from 'next/link'
-import { PortableText } from 'components/PortableText'
 
 interface Props {
   guide: {
@@ -20,7 +19,6 @@ export const Guide = ({ guide }: Props) => {
   return (
     <Flex flexDirection="column">
       <h1>{guide.title}</h1>
-      <PortableText value={guide.body} />
       <Link href="/">Back</Link>
     </Flex>
   )
