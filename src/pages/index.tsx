@@ -1,4 +1,42 @@
-import { getStaticProps, Home } from 'routes/Home'
+import { getStoryblokApi, StoryblokComponent, useStoryblokState } from '@storyblok/react'
+import Head from 'next/head'
 
-export default Home
-export { getStaticProps }
+export default function Home({ story }) {
+  story = useStoryblokState(story)
+
+  return (
+    <div>
+      <Head>
+        <title>Create Next App</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <header>
+        <h1>{story ? story.name : 'My Site'}</h1>
+      </header>
+
+      <StoryblokComponent blok={story.content} />
+    </div>
+  )
+}
+
+export async function getStaticProps() {
+  // home is the default slug for the homepage in Storyblok
+  const slug = 'home'
+
+  // load the draft version
+  const sbParams = {
+    version: 'draft', // or 'published'
+  }
+
+  const storyblokApi = getStoryblokApi()
+  const { data } = await storyblokApi.get(`cdn/stories/${slug}`, sbParams)
+
+  return {
+    props: {
+      story: data ? data.story : false,
+      key: data ? data.story.id : false,
+    },
+    revalidate: 3600, // revalidate every hour
+  }
+}
