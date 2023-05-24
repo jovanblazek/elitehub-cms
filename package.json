@@ -3,10 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "yarn run start-ssl & next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start-ssl": "local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
+    "cms:login": "storyblok login",
+    "cms:logout": "storyblok logout",
+    "generate:theme-types": "cross-env NODE_PATH=src/ chakra-cli tokens src/theme/theme.ts",
+    "generate:storyblok-component-types": "storyblok pull-components --space=231095 && storyblok-generate-ts source=./components.231095.json target=./storyblok-components.ts",
+    "generate:all-types": "npm-run-all -p generate:theme-types generate:storyblok-component-types"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.3",
@@ -27,12 +33,14 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@chakra-ui/cli": "^2.4.1",
     "@sudolabs-io/eslint-config-sudolabs": "1.5.116",
     "@types/node": "18.11.0",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.0.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-base": "15.0.0",
@@ -48,7 +56,10 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
+    "storyblok": "^3.24.0",
+    "storyblok-generate-ts": "^1.14.0",
     "typescript": "^4.9.4"
   }
 }

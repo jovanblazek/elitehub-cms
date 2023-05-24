@@ -34,7 +34,25 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
+# local env files
 .env
 .env.production
 .env.test
 .env.development
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel
+
+.eslintcache
+
+# storyblok
+/components.*.json
+/presets.*.json
+storyblok-components.ts
+
+# graphql
+schema.graphql
