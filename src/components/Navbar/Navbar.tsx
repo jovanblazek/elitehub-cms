@@ -16,11 +16,15 @@ import NextLink from 'next/link'
 import { ROUTES } from 'shared/constants'
 import { COLOR_INTENT, FONT_FAMILY, HEADER_HEIGHT_PX, NAVBAR_MAX_WIDTH, Z_INDEX } from 'theme'
 import { useMedia } from 'utils/useMedia'
-import { NAVLINKS } from './constants'
+import type { NavigationDocument } from '../../../prismicio-types'
 import { MobileMenu } from './MobileMenu'
 import { NavLink } from './NavLink'
 
-export const Navbar = () => {
+interface NavbarProps {
+  navigation: NavigationDocument
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ navigation }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const { isDesktop } = useMedia()
@@ -36,6 +40,10 @@ export const Navbar = () => {
     false,
     0
   )
+
+  if (!navigation) {
+    return null
+  }
 
   return (
     <Flex
@@ -65,19 +73,17 @@ export const Navbar = () => {
               <Text color="brand.sonicSilver" fontSize="3xl">
                 /
               </Text>
-              <NextLink href={ROUTES.HOME} passHref>
-                <LinkOverlay>
-                  <Text fontWeight="semibold" fontSize="2xl" fontFamily={FONT_FAMILY.HEADING}>
-                    Elitehub
-                  </Text>
-                </LinkOverlay>
-              </NextLink>
+              <LinkOverlay as={NextLink} href={ROUTES.HOME} passHref>
+                <Text fontWeight="semibold" fontSize="2xl" fontFamily={FONT_FAMILY.HEADING}>
+                  Elitehub
+                </Text>
+              </LinkOverlay>
             </Flex>
           </LinkBox>
           {isDesktop ? (
             <Flex gap="8" justifySelf="end" alignItems="center">
-              {NAVLINKS.map(({ href, text }) => (
-                <NavLink href={href} text={text} key={text} />
+              {navigation.data.slices.map(({ primary: { name, link } }) => (
+                <NavLink linkField={link} nameField={name} key={name} />
               ))}
               <IconButton
                 variant="outline"
@@ -99,7 +105,7 @@ export const Navbar = () => {
               >
                 <Icon as={MenuAltRight} width="8" height="8" />
               </Text>
-              <MobileMenu isOpen={isMenuOpen} />
+              <MobileMenu isOpen={isMenuOpen} navigation={navigation} />
             </>
           )}
         </Flex>

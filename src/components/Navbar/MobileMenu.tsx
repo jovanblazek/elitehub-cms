@@ -2,7 +2,7 @@ import { Grid } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { AnimatePresence, motion } from 'framer-motion'
 import { COLOR_INTENT } from 'theme'
-import { NAVLINKS } from './constants'
+import type { NavigationDocument } from '../../../prismicio-types'
 import { NavLink } from './NavLink'
 
 const ANIMATION_DURATION = 0.3
@@ -21,9 +21,10 @@ const Wrapper = styled(motion.div)`
 
 interface Props {
   isOpen: boolean
+  navigation: NavigationDocument
 }
 
-export const MobileMenu = ({ isOpen }: Props) => (
+export const MobileMenu = ({ isOpen, navigation }: Props) => (
   <AnimatePresence initial={false}>
     {isOpen && (
       <Wrapper
@@ -44,8 +45,8 @@ export const MobileMenu = ({ isOpen }: Props) => (
           py="4"
           textAlign="end"
         >
-          {NAVLINKS.map(({ href, text }) => (
-            <NavLink key={text} href={href} text={text} py={4} />
+          {navigation.data.slices.map(({ primary: { name, link } }) => (
+            <NavLink linkField={link} nameField={name} key={name} py={4} />
           ))}
         </Grid>
       </Wrapper>

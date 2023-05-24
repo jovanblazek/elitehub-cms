@@ -1,27 +1,30 @@
 import { SliceZone } from '@prismicio/react'
-import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import type { InferGetStaticPropsType, PreviewData } from 'next'
 import Head from 'next/head'
-import { components } from 'slices'
+import { Navbar } from 'components/Navbar'
+import { components } from 'components/slices'
 import { createPrismicClient } from 'utils/prismicClient'
-import type { HomePageDocument } from '../../../.slicemachine/prismicio'
 
-export const Home = ({ page }: InferGetStaticPropsType<typeof getStaticProps>) => (
+export const Home = ({ page, navigation }: InferGetStaticPropsType<typeof getStaticProps>) => (
   <>
     <Head>
       <title>{page.data.seo_title}</title>
     </Head>
+    <Navbar navigation={navigation} />
     <SliceZone slices={page.data.slices} components={components} />
   </>
 )
 
-export const getStaticProps: GetStaticProps<{
-  page: HomePageDocument
-}> = async ({ previewData }) => {
+export const getStaticProps = async ({ previewData }: { previewData: PreviewData }) => {
   const client = createPrismicClient({ previewData })
-  const page = await client.getSingle('home_page')
+  const [navigation, page] = await Promise.all([
+    client.getSingle('navigation'),
+    client.getSingle('home_page'),
+  ])
 
   return {
     props: {
+      navigation,
       page,
     },
   }

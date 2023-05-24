@@ -1,13 +1,21 @@
 import { SliceZone } from '@prismicio/react'
 import { SliceSimulator } from '@prismicio/slice-simulator-react'
-import state from '../../.slicemachine/libraries-state.json'
-import { components } from '../slices'
+import { BODY_BG_COLOR } from 'theme'
+import { components } from 'components/slices'
 
 const SliceSimulatorPage = () => (
   <SliceSimulator
-    sliceZone={({ slices }) => <SliceZone slices={slices} components={components} />}
-    state={state}
+    sliceZone={(props) => <SliceZone {...props} components={components} />}
+    state={{}}
+    background={BODY_BG_COLOR}
   />
 )
 
 export default SliceSimulatorPage
+
+export const getStaticProps = () => {
+  if (process.env.NODE_ENV === 'production') {
+    return { notFound: true }
+  }
+  return { props: {} }
+}

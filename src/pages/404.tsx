@@ -10,7 +10,7 @@ const BUTTON_TEXT = 'Domov'
 const NotFound = () => (
   <Flex flexDirection="column" justifyContent="center" gap="6" mt="16" px="8">
     <Box textAlign="center">
-      <Image layout="intrinsic" src="/404_orange.png" width={264} height={138} />
+      <Image alt="404" layout="intrinsic" src="/404_orange.png" width={264} height={138} />
     </Box>
     <Text textAlign="center" fontSize="xl">
       {NOT_FOUND_MESSAGE}

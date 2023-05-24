@@ -1,7 +1,8 @@
 import { Text, TextProps } from '@chakra-ui/react'
 import styled from '@emotion/styled'
+import { PrismicNextLink } from '@prismicio/next'
+import type { KeyTextField, LinkField } from '@prismicio/types'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { COLOR_INTENT } from 'theme'
 import { useMedia } from 'utils/useMedia'
 
@@ -22,14 +23,14 @@ const Underline = styled(motion.div)`
 `
 
 interface Props extends TextProps {
-  text: string
-  href: string
+  nameField: KeyTextField
+  linkField: LinkField
 }
 
-export const NavLink = ({ text, href, ...rest }: Props) => {
+export const NavLink = ({ nameField, linkField, ...rest }: Props) => {
   const { isDesktop } = useMedia()
   return (
-    <Link href={href}>
+    <PrismicNextLink field={linkField}>
       <AnimationWrapper whileHover={ANIMATION_VARIANT.VISIBLE} initial={ANIMATION_VARIANT.HIDDEN}>
         <Text
           fontWeight="medium"
@@ -41,7 +42,7 @@ export const NavLink = ({ text, href, ...rest }: Props) => {
           }}
           {...rest}
         >
-          {text}
+          {nameField}
         </Text>
         {isDesktop && (
           <Underline
@@ -55,6 +56,6 @@ export const NavLink = ({ text, href, ...rest }: Props) => {
           />
         )}
       </AnimationWrapper>
-    </Link>
+    </PrismicNextLink>
   )
 }

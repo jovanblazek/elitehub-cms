@@ -4,7 +4,6 @@ import { PrismicProvider } from '@prismicio/react'
 import type { AppProps } from 'next/app'
 import Link from 'next/link'
 import { theme } from 'theme'
-import { Navbar } from 'components/Navbar'
 import { REPOSITORY_NAME } from 'utils/prismicClient'
 import '@fontsource/rubik/400.css'
 import '@fontsource/rubik/500.css'
@@ -17,7 +16,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
   <ChakraProvider theme={theme}>
     <PrismicProvider internalLinkComponent={(props) => <Link {...props} />}>
       <PrismicPreview repositoryName={REPOSITORY_NAME}>
-        <Navbar />
         <Component {...pageProps} />
       </PrismicPreview>
     </PrismicProvider>

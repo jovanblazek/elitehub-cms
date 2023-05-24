@@ -71,6 +71,7 @@ export const FONT_FAMILY = {
 }
 
 export const TEXT_COLOR = COLORS.PLATINUM
+export const BODY_BG_COLOR = COLORS.PIANO_BLACK
 export const BASE_FONT_SIZE_PX = '16px'
 export const HEADER_HEIGHT_PX = '80px'
 export const CONTAINER_MAX_WIDTH_PX = '1020px'

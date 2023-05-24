@@ -3,6 +3,7 @@ import { Styles } from '@chakra-ui/theme-tools'
 import * as Components from './components'
 import {
   BASE_FONT_SIZE_PX,
+  BODY_BG_COLOR,
   COLORS,
   DEVICE_BREAKPOINTS,
   FONT_FAMILY,
@@ -23,7 +24,7 @@ export const GlobalStyles: Styles = {
       minWidth: '320px',
       color: TEXT_COLOR,
       fontFamily: 'Rubik, sans-serif',
-      backgroundColor: COLORS.PIANO_BLACK,
+      backgroundColor: BODY_BG_COLOR,
     },
     '*, *::before, &::after': {
       borderColor: 'brand.skyBlue',
