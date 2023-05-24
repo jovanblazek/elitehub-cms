@@ -1,11 +1,11 @@
 /* eslint-disable */
 import { storyblokEditable } from '@storyblok/react'
 
+// TEMPORARY COMPONENT
 // @ts-ignore 
-const Feature = ({ blok }) => (
-  <div className="column feature" {...storyblokEditable(blok)}>
+export const Feature = ({ blok }) => (
+  <div {...storyblokEditable(blok)}>
     {blok.name}
   </div>
 );
  
-export default Feature;

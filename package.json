@@ -11,7 +11,7 @@
     "cms:login": "storyblok login",
     "cms:logout": "storyblok logout",
     "generate:theme-types": "cross-env NODE_PATH=src/ chakra-cli tokens src/theme/theme.ts",
-    "generate:storyblok-component-types": "storyblok pull-components --space=231095 && storyblok-generate-ts source=./components.231095.json target=./storyblok-components.ts",
+    "generate:storyblok-component-types": "storyblok pull-components --space=231095 && storyblok-generate-ts source=./components.231095.json target=./src/generated/storyblok-components.ts",
     "generate:all-types": "npm-run-all -p generate:theme-types generate:storyblok-component-types"
   },
   "dependencies": {
