@@ -1,25 +1,71 @@
-import { Flex } from '@chakra-ui/react'
-import Link from 'next/link'
+import { ReactNode } from 'react'
+import { SliceZone } from '@prismicio/react'
+import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import Head from 'next/head'
+import { ArticleHeader } from 'components/ArticleHeader'
+import { getLayout } from 'components/Layout'
+import { components } from 'components/slices'
+import { createPrismicClient } from 'utils/prismicClient'
 
-interface Props {
-  guide: {
-    title: string
-    slug: {
-      current: string
+export const Guide = ({ article }: InferGetStaticPropsType<typeof getStaticProps>) => (
+  <>
+    <Head>
+      <title>{article.data.title}</title>
+    </Head>
+    <ArticleHeader
+      titleImage="/exploration.jpeg"
+      titleProps={{
+        titleText: article.data.title,
+      }}
+    />
+    <SliceZone slices={article.data.slices} components={components} />
+  </>
+)
+
+export const getStaticProps = async ({
+  previewData,
+  params,
+}: GetStaticPropsContext<{
+  uid: string
+}>) => {
+  try {
+    if (!params) {
+      throw new Error('Missing params when getting static props for guide')
     }
-    categories: {
-      title: string
-    }[]
-    body: never
+    const client = createPrismicClient({ previewData })
+    const article = await client.getByUID('article', params.uid)
+    const [navigation] = await Promise.all([
+      client.getSingle('navigation'),
+      client.getByUID('article', params.uid),
+    ])
+
+    return {
+      props: {
+        navigation,
+        article,
+      },
+    }
+  } catch {
+    return {
+      notFound: true,
+    }
   }
 }
 
-export const Guide = ({ guide }: Props) => {
-  console.log(guide)
-  return (
-    <Flex flexDirection="column">
-      <h1>{guide.title}</h1>
-      <Link href="/">Back</Link>
-    </Flex>
-  )
+export async function getStaticPaths() {
+  const client = createPrismicClient()
+  const articles = await client.getAllByType('article')
+
+  const paths = articles.map(({ uid }) => ({
+    params: {
+      uid,
+    },
+  }))
+
+  return {
+    paths,
+    fallback: false,
+  }
 }
+
+Guide.getLayout = (page: ReactNode) => getLayout(page)

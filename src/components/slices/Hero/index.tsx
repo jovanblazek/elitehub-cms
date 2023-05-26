@@ -14,7 +14,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => (
   <ArticleHeader
     titleImage="/exploration.jpeg"
     titleProps={{
-      title: slice.primary.title as string,
+      titleText: slice.primary.title,
     }}
   />
 )

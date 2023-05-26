@@ -1,0 +1,20 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Consectetur excepteur duis esse quis sunt incididunt ex anim ipsum sint. Minim adipisicing veniam ut sit. Reprehenderit laborum officia minim officia."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

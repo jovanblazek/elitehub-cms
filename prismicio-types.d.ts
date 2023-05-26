@@ -6,6 +6,83 @@ import type * as prismicClient from '@prismicio/client'
 type Simplify<T> = {
   [KeyType in keyof T]: T[KeyType]
 }
+/** Content for Article documents */
+interface ArticleDocumentData {
+  /**
+   * title field in *Article*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.title
+   * - **Tab**: Guide
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  title: prismic.KeyTextField
+  /**
+   * Title Image field in *Article*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.title_image
+   * - **Tab**: Guide
+   * - **Documentation**: https://prismic.io/docs/core-concepts/image
+   *
+   */
+  title_image: prismic.ImageField<never>
+  /**
+   * Thumbnail field in *Article*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.thumbnail
+   * - **Tab**: Guide
+   * - **Documentation**: https://prismic.io/docs/core-concepts/image
+   *
+   */
+  thumbnail: prismic.ImageField<never>
+  /**
+   * Publish Date field in *Article*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.published_at
+   * - **Tab**: Guide
+   * - **Documentation**: https://prismic.io/docs/core-concepts/date
+   *
+   */
+  published_at: prismic.DateField
+  /**
+   * Slice Zone field in *Article*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.slices[]
+   * - **Tab**: Guide
+   * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+   *
+   */
+  slices: prismic.SliceZone<ArticleDocumentDataSlicesSlice>
+}
+/**
+ * Slice for *Article → Slice Zone*
+ *
+ */
+type ArticleDocumentDataSlicesSlice = RichTextSlice | ImageSlice
+/**
+ * Article document from Prismic
+ *
+ * - **API ID**: `article`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ArticleDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<ArticleDocumentData>,
+  'article',
+  Lang
+>
 /** Content for Home Page documents */
 interface HomePageDocumentData {
   /**
@@ -94,7 +171,7 @@ export type NavigationDocument<Lang extends string = string> = prismic.PrismicDo
   'navigation',
   Lang
 >
-export type AllDocumentTypes = HomePageDocument | NavigationDocument
+export type AllDocumentTypes = ArticleDocument | HomePageDocument | NavigationDocument
 /**
  * Primary content in Hero → Primary
  *
@@ -148,6 +225,59 @@ type HeroSliceVariation = HeroSliceDefault
  *
  */
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>
+/**
+ * Primary content in Image → Primary
+ *
+ */
+interface ImageSliceDefaultPrimary {
+  /**
+   * Image field in *Image → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image.primary.image
+   * - **Documentation**: https://prismic.io/docs/core-concepts/image
+   *
+   */
+  image: prismic.ImageField<never>
+  /**
+   * Caption field in *Image → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image.primary.caption
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  caption: prismic.RichTextField
+}
+/**
+ * Default variation for Image Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `Default`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type ImageSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<ImageSliceDefaultPrimary>,
+  never
+>
+/**
+ * Slice variation for *Image*
+ *
+ */
+type ImageSliceVariation = ImageSliceDefault
+/**
+ * Image Shared Slice
+ *
+ * - **API ID**: `image`
+ * - **Description**: `Image`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type ImageSlice = prismic.SharedSlice<'image', ImageSliceVariation>
 /**
  * Primary content in NavigationItem → Primary
  *
@@ -230,6 +360,49 @@ export type NavigationItemSlice = prismic.SharedSlice<
   'navigation_item',
   NavigationItemSliceVariation
 >
+/**
+ * Primary content in RichText → Primary
+ *
+ */
+interface RichTextSliceDefaultPrimary {
+  /**
+   * Content field in *RichText → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_text.primary.content
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  content: prismic.RichTextField
+}
+/**
+ * Default variation for RichText Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `Default`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type RichTextSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<RichTextSliceDefaultPrimary>,
+  never
+>
+/**
+ * Slice variation for *RichText*
+ *
+ */
+type RichTextSliceVariation = RichTextSliceDefault
+/**
+ * RichText Shared Slice
+ *
+ * - **API ID**: `rich_text`
+ * - **Description**: `RichText`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type RichTextSlice = prismic.SharedSlice<'rich_text', RichTextSliceVariation>
 declare module '@prismicio/client' {
   interface CreateClient {
     (
@@ -239,6 +412,9 @@ declare module '@prismicio/client' {
   }
   namespace Content {
     export type {
+      ArticleDocumentData,
+      ArticleDocumentDataSlicesSlice,
+      ArticleDocument,
       HomePageDocumentData,
       HomePageDocumentDataSlicesSlice,
       HomePageDocument,
@@ -250,11 +426,19 @@ declare module '@prismicio/client' {
       HeroSliceDefault,
       HeroSliceVariation,
       HeroSlice,
+      ImageSliceDefaultPrimary,
+      ImageSliceDefault,
+      ImageSliceVariation,
+      ImageSlice,
       NavigationItemSliceDefaultPrimary,
       NavigationItemSliceDefaultItem,
       NavigationItemSliceDefault,
       NavigationItemSliceVariation,
       NavigationItemSlice,
+      RichTextSliceDefaultPrimary,
+      RichTextSliceDefault,
+      RichTextSliceVariation,
+      RichTextSlice,
     }
   }
 }
