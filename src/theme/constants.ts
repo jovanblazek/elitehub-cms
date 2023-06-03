@@ -55,6 +55,9 @@ export const COLOR_INTENT = {
       },
     },
   },
+  LINK: {
+    TEXT: COLORS.SUNSET_GLOW,
+  },
   ARTICLE_HEADER: {
     BACKGROUND: COLORS.BLACK,
     TITLE: {

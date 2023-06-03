@@ -27,7 +27,7 @@ export const GlobalStyles: Styles = {
       backgroundColor: BODY_BG_COLOR,
     },
     '*, *::before, &::after': {
-      borderColor: 'brand.skyBlue',
+      borderColor: COLORS.SKY_BLUE,
     },
     'a, button': {
       touchAction: 'manipulation',

@@ -9,7 +9,7 @@ type Simplify<T> = {
 /** Content for Article documents */
 interface ArticleDocumentData {
   /**
-   * title field in *Article*
+   * Title field in *Article*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -44,14 +44,14 @@ interface ArticleDocumentData {
   /**
    * Publish Date field in *Article*
    *
-   * - **Field Type**: Date
+   * - **Field Type**: Timestamp
    * - **Placeholder**: *None*
    * - **API ID Path**: article.published_at
    * - **Tab**: Guide
-   * - **Documentation**: https://prismic.io/docs/core-concepts/date
+   * - **Documentation**: https://prismic.io/docs/core-concepts/timestamp
    *
    */
-  published_at: prismic.DateField
+  published_at: prismic.TimestampField
   /**
    * Slice Zone field in *Article*
    *
@@ -63,6 +63,39 @@ interface ArticleDocumentData {
    *
    */
   slices: prismic.SliceZone<ArticleDocumentDataSlicesSlice>
+  /**
+   * Meta Description field in *Article*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: article.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  meta_description: prismic.RichTextField
+  /**
+   * Meta Image field in *Article*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/core-concepts/image
+   *
+   */
+  meta_image: prismic.ImageField<never>
+  /**
+   * Meta Title field in *Article*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: article.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  meta_title: prismic.KeyTextField
 }
 /**
  * Slice for *Article → Slice Zone*
